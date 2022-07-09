@@ -1,0 +1,27 @@
+// Import bootstrap
+@import '../node_modules/bootstrap/scss/bootstrap';
+// Custom code
+$primary: orange;
+$light: #f7f7f7;
+
+$custom-theme-colors: (
+    'main-game': yellow,
+);
+
+.current-score {
+    background-color: #f7f7f7;
+}
+
+.bg-body-game {
+    background: rgb(247, 247, 247);
+    background: linear-gradient(
+        90deg,
+        rgba(247, 247, 247, 1) 0%,
+        rgba(247, 247, 247, 1) 49%,
+        rgba(255, 255, 255, 1) 50%,
+        rgba(255, 255, 255, 1) 100%
+    );
+    height: 100vh;
+}
+
+$theme-colors: map-merge($custom-theme-colors, $theme-colors);

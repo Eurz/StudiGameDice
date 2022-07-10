@@ -29,6 +29,16 @@ $custom-theme-colors: (
     height: 150px;
     width: 150px;
 }
+.dice-effect {
+    transform: rotate(0);
+    scale: (1);
+
+    transition: all 0.3s ease-in-out;
+}
+.dice-animate {
+    transform: rotate(1turn);
+    scale: (1.2);
+}
 .selected-player {
     position: relative;
 }

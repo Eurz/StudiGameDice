@@ -39,13 +39,17 @@
                     class="col d-flex flex-column justify-content-evenly align-items-center"
                 >
                     <div
-                        id="dice"
+                        id="dice-container"
                         class="bg-white shadow-lg d-inline-flex justify-content-evenly align-items-center dice display-5 text-main-game"
                     >
-                        <i class="bi question-square"></i>
+                        <div
+                            class="d-flex align-items-center justify-content-center dice-effect"
+                        >
+                            <i class="bi question-square"></i>
+                        </div>
                     </div>
                     <div class="btn-group-vertical">
-                        <button id="btn-roll-dice" class="btn">
+                        <button id="btn-roll-dice" class="btn mb-3">
                             <i class="bi bi-arrow-repeat text-main-game"></i>
                             ROLL DICE</button
                         ><button id="btn-hold" class="btn">
@@ -71,7 +75,7 @@
                 </div>
             </div>
         </div>
-
+        <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
         <script src="js/App.js" type="module"></script>
     </body>
 </html>

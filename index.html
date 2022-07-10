@@ -5,48 +5,73 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="css/custom.min.css" />
+        <link
+            rel="stylesheet"
+            href="node_modules/bootstrap-icons/font/bootstrap-icons.css"
+        />
         <title>Studi Game</title>
     </head>
-    <body class="bg-body-game text-center">
+    <body class="vh-100 text-center py-5 bg-body-game">
         <div
             class="container-fluid d-flex flex-column h-100 justify-content-between p-5 g-5"
         >
             <header class="text-center">
-                <button class="btn bg-main-game">NEW GAME</button>
+                <button id="btn-new-game" class="btn">
+                    <i class="bi bi-plus-circle text-main-game"></i> NEW GAME
+                </button>
             </header>
 
-            <div class="row flex-2">
-                <div class="col">
-                    <div>PLAYER 1</div>
-                    <div>43</div>
-                </div>
-                <div class="col-3 align-self-center">
-                    <div>.....</div>
-                </div>
-                <div class="col">
-                    <div>PLAYER 2</div>
-                    <div>72</div>
-                </div>
-            <!-- </div> -->
-
-            <div class="row">
-                <div class="col-5">
-                    <div>CURRENT</div>
-                    <div>11</div>
-                </div>
-                <div class="col-2">
-                    <div>
-                        <button class="btn bg-boubou">ROLL DICE</button
-                        ><button class="btn bg-primary">HOLD</button>
+            <div class="row h-100">
+                <div
+                    id="player-one"
+                    class="col d-flex flex-column justify-content-around align-items-center"
+                >
+                    <div class="display-5">
+                        <div class="player-name opacity-50">PLAYER 1</div>
+                        <div class="global-score text-main-game">0</div>
+                    </div>
+                    <div class="bg-main-game d-inline-block p-5">
+                        <div>CURRENT</div>
+                        <div class="text-white fs-3 current-score">0</div>
                     </div>
                 </div>
-                <div class="col-5">
-                    <div>PLAYER 2</div>
-                    <div>72</div>
+                <div
+                    class="col d-flex flex-column justify-content-evenly align-items-center"
+                >
+                    <div
+                        id="dice"
+                        class="bg-white shadow-lg d-inline-flex justify-content-evenly align-items-center dice display-5 text-main-game"
+                    >
+                        <i class="bi question-square"></i>
+                    </div>
+                    <div class="btn-group-vertical">
+                        <button id="btn-roll-dice" class="btn">
+                            <i class="bi bi-arrow-repeat text-main-game"></i>
+                            ROLL DICE</button
+                        ><button id="btn-hold" class="btn">
+                            <i
+                                class="bi bi-box-arrow-in-down text-main-game"
+                            ></i>
+                            HOLD
+                        </button>
+                    </div>
+                </div>
+                <div
+                    id="player-two"
+                    class="col d-flex flex-column justify-content-around align-items-center"
+                >
+                    <div class="display-5">
+                        <div class="player-name opacity-50">PLAYER 2</div>
+                        <div class="global-score text-main-game">0</div>
+                    </div>
+                    <div class="bg-main-game d-inline-block p-5">
+                        <div>CURRENT</div>
+                        <div class="text-white fs-3 current-score">0</div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <script src="js/app.js"></script>
+        <script src="js/App.js" type="module"></script>
     </body>
 </html>

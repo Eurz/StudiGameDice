@@ -5,13 +5,15 @@ $primary: orange;
 $light: #f7f7f7;
 
 $custom-theme-colors: (
-    'main-game': yellow,
+    'main-game': #eb4d4c,
 );
 
-.current-score {
-    background-color: #f7f7f7;
+.bg-main-game {
+    background-color: #eb4d4c;
 }
-
+.text-main-game {
+    color: #eb4d4c;
+}
 .bg-body-game {
     background: rgb(247, 247, 247);
     background: linear-gradient(
@@ -21,7 +23,30 @@ $custom-theme-colors: (
         rgba(255, 255, 255, 1) 50%,
         rgba(255, 255, 255, 1) 100%
     );
-    height: 100vh;
 }
 
+.dice {
+    height: 150px;
+    width: 150px;
+}
+.selected-player {
+    position: relative;
+}
+.selected-player::after {
+    content: '';
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    margin-right: -30px;
+    margin-top: -10px;
+    border-radius: 50%;
+    background-color: #eb4d4c;
+}
+
+.global-score {
+    font-size: 2em;
+}
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);

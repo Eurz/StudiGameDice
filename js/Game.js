@@ -1,4 +1,5 @@
 import Player from './models/Player.js'
+import Sounds from './Sounds.js'
 
 export default class Game {
     /**
@@ -10,7 +11,7 @@ export default class Game {
         this.btnNewGame = document.querySelector('#btn-new-game')
         this.btnRollDice = document.querySelector('#btn-roll-dice')
         this.btnhold = document.querySelector('#btn-hold')
-        this.maxScore = 100
+        this.maxScore = 10
         this.dice = document.querySelector('#dice-container i')
 
         this.playerOne = playerOne
@@ -20,7 +21,7 @@ export default class Game {
         this.score = 0
         const messageContainer = document.querySelector('#message')
         messageContainer.textContent = `Score à atteindre : ${this.maxScore} pts`
-
+        this.soundsEffect = new Sounds()
         this.init()
     }
 
@@ -34,6 +35,8 @@ export default class Game {
      * @returns Random value between 1 and 6 when dice is rolling
      */
     onRollDiceBtn = () => {
+        this.soundsEffect.play('roll')
+
         const randomNumber = Math.floor(Math.random() * 5 + 1)
         this.dice.className = `bi bi-dice-${randomNumber}`
 
@@ -53,10 +56,14 @@ export default class Game {
      * @returns Current player receives current points in his global score and change the current player
      */
     onHoldBtn = () => {
+        this.soundsEffect.play('hold')
+
         this.currentPlayer.updateScore(this.score, 0)
         this.score = 0
 
         if (this.currentPlayer.getGlobalScore >= this.maxScore) {
+            this.soundsEffect.play('victory')
+
             this.endGame()
             return
         }
@@ -95,20 +102,19 @@ export default class Game {
         target.innerHTML = `
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-                <div class="modal-body">${this.currentPlayer.getName} a remporté la partie avec un score de ${this.currentPlayer.getGlobalScore} points</div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn bg-main-game text-white" id="modal-btn-new-game">Save changes</button>        
+                <div class="modal-body">
+                <img src="../img/victoire.jpg" class="img-fluid mb-4" alt="${this.currentPlayer.getName} a gagné ">
+                ${this.currentPlayer.getName} a remporté la partie avec un score de ${this.currentPlayer.getGlobalScore} points</div>
+                <div class="p-3">
+                <div class="d-grid gap-2">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sortir</button>
+                    <button type="button" class="btn bg-main-game text-white" id="modal-btn-new-game">Nouvelle partie</button>        
+                    </div>
                 </div>
             </div>
         </div>
         `
-
         myModal.show()
-
-        // myModal.addEventListener('hidden.bs.modal', (event) => {
-        //     console.log('Je me cache')
-        // })
 
         const modalNewGameBtn = target.querySelector('#modal-btn-new-game')
         modalNewGameBtn.addEventListener('click', () => {
@@ -126,6 +132,8 @@ export default class Game {
     }
 
     newGame = () => {
+        this.soundsEffect.play('laugh')
+
         this.currentPlayer = this.playerOne
         this.playerOne.resetScore()
         this.playerTwo.resetScore()

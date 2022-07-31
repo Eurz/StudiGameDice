@@ -3,3 +3,5 @@
 In this game, two player can play.
 
 Each player roll the dice. The first to reach 100 points is the winner.
+
+Enjoy!!!

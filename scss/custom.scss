@@ -59,4 +59,30 @@ $custom-theme-colors: (
 .global-score {
     font-size: 2em;
 }
+.anime-container {
+    position: relative;
+}
+.anime-current {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    scale: 0;
+    border-radius: 100%;
+    animation: animeon 0.3s linear 0s 1 normal backwards;
+}
+
+@keyframes animeon {
+    from {
+        scale: 0.5;
+    }
+    to {
+        scale: 1.3;
+        background-color: #fff;
+        opacity: 0;
+    }
+}
+
+// SCSS Variables
 $theme-colors: map-merge($custom-theme-colors, $theme-colors);

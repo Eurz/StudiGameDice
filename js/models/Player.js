@@ -50,7 +50,16 @@ export default class Player {
         this.globalScoreDiv.textContent = this.getGlobalScore
     }
 
-    animateGlobalScore() {}
+    animateCurrentScore() {
+        const target = this.root
+            .querySelector('.anime-container')
+            .querySelector('.anime')
+        target.classList.add('anime-current')
+
+        target.addEventListener('animationend', () => {
+            target.classList.remove('anime-current')
+        })
+    }
 
     get getGlobalScore() {
         return this.globalScore

@@ -10,7 +10,7 @@ export default class Game {
         this.btnNewGame = document.querySelector('#btn-new-game')
         this.btnRollDice = document.querySelector('#btn-roll-dice')
         this.btnhold = document.querySelector('#btn-hold')
-        this.maxScore = 7
+        this.maxScore = 100
         this.dice = document.querySelector('#dice-container i')
 
         this.playerOne = playerOne
@@ -42,6 +42,7 @@ export default class Game {
             this.changePlayer()
             return
         }
+        this.currentPlayer.animateCurrentScore()
 
         this.score += randomNumber
         this.currentPlayer.updateScore(0, this.score)

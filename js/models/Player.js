@@ -6,8 +6,10 @@ export default class Player {
      */
     constructor(idHtmlString, playerName) {
         this.root = document.querySelector(idHtmlString)
-        this.name = this.root.querySelector('.player-name')
-        this.name.textContent = playerName
+        this.nameContainer = this.root.querySelector('.player-name')
+        this.nameContainer.textContent = playerName
+
+        this.playerName = playerName
         this.globalScoreDiv = this.root.querySelector('.global-score')
         this.currentScoreDiv = this.root.querySelector('.current-score')
         this.globalScore = 0
@@ -16,35 +18,57 @@ export default class Player {
 
     setActive(isActive) {
         if (isActive) {
-            this.name.classList.add('opacity-100', 'selected-player')
+            this.nameContainer.classList.add('opacity-100', 'selected-player')
         } else {
-            this.name.classList.remove('opacity-100', 'selected-player')
-            this.currentScore = 0
-            this.holdScores()
+            this.nameContainer.classList.remove(
+                'opacity-100',
+                'selected-player'
+            )
         }
+        this.setCurrentScore = 0
     }
 
-    updateCurrentScore(number) {
-        this.currentScore += number
-        this.currentScoreDiv.textContent = this.currentScore
+    updateScore(globalScore = 0, currentScore = 0) {
+        if (currentScore === 0) {
+            this.setCurrentScore = 0
+        }
+        this.setCurrentScore = currentScore
+
+        if (globalScore !== 0) {
+            this.setGlobalScore = this.getGlobalScore + globalScore
+            this.setCurrentScore = 0
+        }
+
+        this.currentScoreDiv.textContent = this.getCurrentScore
+        this.globalScoreDiv.textContent = this.getGlobalScore
     }
 
-    holdScores() {
-        this.globalScore += this.currentScore
-        this.globalScoreDiv.textContent = this.globalScore
-        this.currentScore = 0
-        this.currentScoreDiv.textContent = 0
+    resetScore() {
+        this.setGlobalScore = 0
+        this.setCurrentScore = 0
+        this.currentScoreDiv.textContent = this.getCurrentScore
+        this.globalScoreDiv.textContent = this.getGlobalScore
     }
 
-    reset() {
-        this.globalScore = 0
-        this.currentScore = 0
-        this.holdScores()
-        // this.setActive(false)
-    }
     animateGlobalScore() {}
 
     get getGlobalScore() {
         return this.globalScore
+    }
+
+    set setGlobalScore(score) {
+        this.globalScore = score
+    }
+
+    get getCurrentScore() {
+        return this.currentScore
+    }
+
+    set setCurrentScore(score) {
+        this.currentScore = score
+    }
+
+    get getName() {
+        return this.playerName
     }
 }

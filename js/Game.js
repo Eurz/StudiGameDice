@@ -10,7 +10,7 @@ export default class Game {
         this.btnNewGame = document.querySelector('#btn-new-game')
         this.btnRollDice = document.querySelector('#btn-roll-dice')
         this.btnhold = document.querySelector('#btn-hold')
-        this.maxScore = 100
+        this.maxScore = 7
         this.dice = document.querySelector('#dice-container i')
 
         this.playerOne = playerOne
@@ -21,11 +21,14 @@ export default class Game {
         const messageContainer = document.querySelector('#message')
         messageContainer.textContent = `Score à atteindre : ${this.maxScore} pts`
 
+        this.init()
+    }
+
+    init = () => {
         this.desactiveBtn()
         this.dice.className = `bi bi-question-square`
         this.btnNewGame.addEventListener('click', this.newGame)
     }
-
     /**
      *
      * @returns Random value between 1 and 6 when dice is rolling
@@ -81,14 +84,44 @@ export default class Game {
      * End of game
      */
     endGame = () => {
-        this.btnRollDice.removeEventListener('click', this.onRollDiceBtn)
+        const myModal = new bootstrap.Modal(
+            document.getElementById('mainModal'),
+            { backdrop: 'static' }
+        )
 
-        this.btnhold.removeEventListener('click', this.onHoldBtn)
+        const target = document.querySelector('#mainModal')
+
+        target.innerHTML = `
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">${this.currentPlayer.getName} a remporté la partie avec un score de ${this.currentPlayer.getGlobalScore} points</div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn bg-main-game text-white" id="modal-btn-new-game">Save changes</button>        
+                </div>
+            </div>
+        </div>
+        `
+
+        myModal.show()
+
+        // myModal.addEventListener('hidden.bs.modal', (event) => {
+        //     console.log('Je me cache')
+        // })
+
+        const modalNewGameBtn = target.querySelector('#modal-btn-new-game')
+        modalNewGameBtn.addEventListener('click', () => {
+            myModal.hide()
+            this.newGame()
+        })
 
         this.currentPlayer = this.playerOne
         this.dice.className = `bi bi-question-square`
         this.score = 0
-        this.desactiveBtn()
+
+        this.btnOff(this.btnRollDice, this.onRollDiceBtn)
+        this.btnOff(this.btnhold, this.onHoldBtn)
+        this.btnOn(this.btnNewGame, this.newGame)
     }
 
     newGame = () => {
@@ -98,8 +131,10 @@ export default class Game {
 
         this.currentPlayer.setActive(true)
 
-        this.btnRollDice.addEventListener('click', this.onRollDiceBtn)
-        this.btnhold.addEventListener('click', this.onHoldBtn)
+        this.btnOff(this.btnNewGame, this.newGame)
+        this.btnOn(this.btnRollDice, this.onRollDiceBtn)
+        this.btnOn(this.btnhold, this.onHoldBtn)
+
         this.activeBtn()
     }
 
@@ -111,5 +146,15 @@ export default class Game {
     activeBtn = () => {
         this.btnRollDice.classList.remove('opacity-50')
         this.btnhold.classList.remove('opacity-50')
+    }
+
+    btnOff = (btn, callback) => {
+        btn.classList.add('opacity-50')
+        btn.removeEventListener('click', callback)
+    }
+
+    btnOn = (btn, callback) => {
+        btn.classList.remove('opacity-50')
+        btn.addEventListener('click', callback)
     }
 }

@@ -38,6 +38,8 @@ export default class Game {
         this.soundsEffect.play('roll')
 
         const randomNumber = Math.floor(Math.random() * 5 + 1)
+
+        // this.dice.className = `bi bi-dice-${randomNumber}`
         this.dice.className = `bi bi-dice-${randomNumber}`
 
         if (randomNumber === 1) {
@@ -104,7 +106,7 @@ export default class Game {
             <div class="modal-content">
                 <div class="modal-body">
                 <img src="../img/victoire.jpg" class="img-fluid mb-4" alt="${this.currentPlayer.getName} a gagné ">
-                ${this.currentPlayer.getName} a remporté la partie avec un score de ${this.currentPlayer.getGlobalScore} points</div>
+                <strong>${this.currentPlayer.getName}</strong> a remporté la partie avec un score de <strong>${this.currentPlayer.getGlobalScore}</strong> points</div>
                 <div class="p-3">
                 <div class="d-grid gap-2">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Sortir</button>

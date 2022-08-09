@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="css/custom.min.css" />
         <link
             rel="stylesheet"
-            href="node_modules/bootstrap-icons/font/bootstrap-icons.css"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css"
         />
         <link rel="shortcut icon" href="./favicon.svg" />
         <title>Studi Dice Game</title>
@@ -61,14 +61,17 @@
                         <div
                             class="d-flex align-items-center justify-content-center dice-effect"
                         >
-                            <i class="bi question-square"></i>
+                            <i class="bi bi-question-square"></i>
                         </div>
                     </div>
-                    <div class="btn-group-vertical">
-                        <button id="btn-roll-dice" class="btn mb-3">
+                    <div class="d-grid gap-2">
+                        <button id="btn-roll-dice" class="btn">
                             <i class="bi bi-arrow-repeat text-main-game"></i>
                             ROLL DICE</button
-                        ><button id="btn-hold" class="btn">
+                        ><button
+                            id="btn-hold"
+                            class="btn btn-main-game btn-test"
+                        >
                             <i
                                 class="bi bi-box-arrow-in-down text-main-game"
                             ></i>
@@ -97,7 +100,8 @@
             </div>
         </div>
 
-        <script src="./node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
+
         <script src="./js/App.js" type="module"></script>
     </body>
 </html>

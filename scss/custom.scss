@@ -1,8 +1,11 @@
 // Import bootstrap
 @import '../node_modules/bootstrap/scss/bootstrap';
+
 // Custom code
 $primary: orange;
 $light: #f7f7f7;
+
+$pink-orange: #eb4d4c;
 
 $custom-theme-colors: (
     'main-game': #eb4d4c,
@@ -24,7 +27,9 @@ $custom-theme-colors: (
         rgba(255, 255, 255, 1) 100%
     );
 }
-
+.btn-test {
+    border: 2px solid #000;
+}
 .dice {
     height: 150px;
     width: 150px;
@@ -86,4 +91,4 @@ $custom-theme-colors: (
 }
 
 // SCSS Variables
-$theme-colors: map-merge($custom-theme-colors, $theme-colors);
+$theme-colors: map-merge($theme-colors, $custom-theme-colors);

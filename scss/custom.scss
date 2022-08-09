@@ -76,6 +76,7 @@ $custom-theme-colors: (
     animation: animeon 0.3s linear 0s 1 normal backwards;
 }
 
+// Animations
 @keyframes animeon {
     from {
         transform: scale(0.5);

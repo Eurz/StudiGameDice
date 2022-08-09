@@ -11,7 +11,7 @@ export default class Game {
         this.btnNewGame = document.querySelector('#btn-new-game')
         this.btnRollDice = document.querySelector('#btn-roll-dice')
         this.btnhold = document.querySelector('#btn-hold')
-        this.maxScore = 10
+        this.maxScore = 100
         this.dice = document.querySelector('#dice-container i')
 
         this.playerOne = playerOne

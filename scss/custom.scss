@@ -27,9 +27,7 @@ $custom-theme-colors: (
         rgba(255, 255, 255, 1) 100%
     );
 }
-.btn-test {
-    border: 2px solid #000;
-}
+
 .dice {
     height: 150px;
     width: 150px;
@@ -92,3 +90,9 @@ $custom-theme-colors: (
 
 // SCSS Variables
 $theme-colors: map-merge($theme-colors, $custom-theme-colors);
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');
+
+:root {
+    --bs-body-font-family: 'Lato', sans-serif;
+}
